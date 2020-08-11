@@ -75,6 +75,7 @@ class DatashaderVis(VisBase):
         ]
 
     def display_datashader_vis(self, p):
+        self.output.clear_output()
         with self.output:
             IPython.display.display(p)
 
@@ -104,7 +105,6 @@ class DatashaderVis(VisBase):
 
     @T.observe("nx_layout", "sparql")
     def changed_layout(self, change):
-        self.output.clear_output()
         output_graph = self.strip_and_produce_rdf_graph(self.graph)
         p = self.set_options(output_graph)
         self.display_datashader_vis(p)
